@@ -1,42 +1,43 @@
+/* Define custom properties */
 :root {
   --color-primary: #ff7b54;
   --color-text-on-primary: #ffffff;
   --color-secondary: #ffffff;
-  --color-text-on-secondary: #585757;
+  --color-text-on-secondary: #706e6e;
   --second-color-text-on-secondary: #000000;
-  --color-boarder: #ffffff;
+  --color-border: #ffffff;
 
   --font-family: "Inter", sans-serif;
-  --color-button-border: var(--color-boarder);
+  --color-button-border: var(--color-border);
   --color-button-primary-bg: var(--color-text-on-primary);
   --color-button-primary-text: var(--color-text-on-secondary);
   --color-button-secondary-bg: var(--color-primary);
   --color-button-secondary-text: var(--color-text-on-primary);
-  --color-botton-correct-bg: #4caf50;
+  --color-botton-correct-bg: #0c5a0e;
   --color-botton-incorrect-bg: #ffb6c1;
 }
 
+/* General styles */
 body {
-  margin: 1rem auto;
-  padding: 3rem;
-  font-family: var(--font-family);
-  display: grid;
-  place-items: center;
-  height: 100vh;
   margin: 0;
   padding: 0;
+  font-family: var(--font-family);
 }
 
 header {
-  width: 70%;
-  margin: 1em auto;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
 }
+
 main {
-  max-width: 70%;
-  padding: 30px;
-  margin: 0px auto;
+  width: 100%;
+  max-width: 1200px; /* Adjust max-width as needed */
+  margin: 0 auto;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 h1,
@@ -45,106 +46,74 @@ p {
   text-align: center;
   font-weight: bold;
 }
+
 img {
-  max-width: 100%;
-  height: 100%;
+  width: 100%;
+  height: auto;
   object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #image-frame {
+  width: 100%;
+  max-width: 550px; /* Adjust max-width as needed */
+  
+  height: 480px; /* Adjust max-height as needed */
+  overflow: hidden;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: x-large;
-  text-align: center;
-  width: 550px; /* adjust as needed */
-  height: 650px; /* adjust as needed */
-  overflow: hidden;
-  border-radius: 1rem;
-}
-
-#explanation,
-#score {
-  padding: 1rem;
-  text-align: center;
 }
 
 #options {
+  width: 100%;
   max-width: 100%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   color: var(--color-text-on-secondary);
   font-weight: bold;
   font-size: 25px;
+}
+a {
+  color: var(--color-text-on-secondary);
+  text-decoration: none;
+  font-weight: lighter;
+}
+a:hover {
+  color: var(--color-primary);
 }
 
 button {
   border-radius: 5px;
   font-size: 20px;
-  padding: 0 64px;
-  height: 100px;
+  padding: 0 1rem;
+  height: 3rem;
   border: 2px solid var(--color-primary);
   box-sizing: border-box;
   cursor: pointer;
   transition: outline 0.2s linear;
   border-radius: 1rem;
   font-weight: bold;
-  font-size: 25px;
   color: var(--color-button-primary-text);
 }
 
 .correct {
   background-color: var(--color-botton-correct-bg);
+  color: var(--color-secondary);
 }
+
 .incorrect {
   background-color: var(--color-botton-incorrect-bg);
 }
+
 .hidden {
   display: none;
 }
 
-/* CSS for tablets */
-@media (max-width: 768px) {
-  /* Adjust styles for tablets here */
-  .correct,
-  .incorrect {
-    font-size: 18px;
-    padding: 0 32px;
-    height: 80px;
-  }
-  /* Adjust image sizes, button sizes, text sizes, etc. as needed */
-}
-
-/* CSS for mobile phones */
-@media (max-width: 480px) {
-  /* Adjust styles for mobile phones here */
-  .correct,
-  .incorrect {
-    font-size: 16px;
-    padding: 0 16px;
-    height: 60px;
-  }
-  /* Adjust image sizes, button sizes, text sizes, etc. as needed */
-}
-
-/* CSS for tablets */
-@media (max-width: 768px) {
-  #image-frame {
-    width: 400px; /* adjust as needed */
-    height: 500px; /* adjust as needed */
-  }
-  /* other styles... */
-}
-
-/* CSS for mobile phones */
-@media (max-width: 480px) {
-  #image-frame {
-    width: 300px; /* adjust as needed */
-    height: 400px; /* adjust as needed */
-  }
-  /* other styles... */
-}
-
+/* Animation for dog emoji */
 @keyframes bark {
   0% {
     transform: rotate(0deg);
@@ -157,7 +126,6 @@ button {
   }
 }
 
-/* Define the animation for wagging tail */
 @keyframes wag {
   0% {
     transform: rotate(0deg);
@@ -176,9 +144,45 @@ button {
   }
 }
 
-/* Apply the animations to the dog emoji */
 h1 .dog-emoji {
   font-size: 40px;
   display: inline-block;
   animation: bark 0.5s infinite alternate, wag 1s infinite alternate;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  main {
+    padding: 0.5rem;
+  }
+  
+  #image-frame {
+    max-width: 400px;
+    max-height: 500px;
+  }
+  
+  button.correct,
+  button.incorrect {
+    font-size: 18px;
+    padding: 0 0.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0.25rem;
+  }
+  
+  #image-frame {
+    max-width: 300px;
+    max-height: 400px;
+  }
+  
+  button.correct,
+  button.incorrect {
+    font-size: 16px;
+    padding: 0 0.25rem;
+    height: 2rem;
+  }
 }
