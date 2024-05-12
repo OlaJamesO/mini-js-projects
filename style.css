@@ -1,0 +1,184 @@
+:root {
+  --color-primary: #ff7b54;
+  --color-text-on-primary: #ffffff;
+  --color-secondary: #ffffff;
+  --color-text-on-secondary: #585757;
+  --second-color-text-on-secondary: #000000;
+  --color-boarder: #ffffff;
+
+  --font-family: "Inter", sans-serif;
+  --color-button-border: var(--color-boarder);
+  --color-button-primary-bg: var(--color-text-on-primary);
+  --color-button-primary-text: var(--color-text-on-secondary);
+  --color-button-secondary-bg: var(--color-primary);
+  --color-button-secondary-text: var(--color-text-on-primary);
+  --color-botton-correct-bg: #4caf50;
+  --color-botton-incorrect-bg: #ffb6c1;
+}
+
+body {
+  margin: 1rem auto;
+  padding: 3rem;
+  font-family: var(--font-family);
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  width: 70%;
+  margin: 1em auto;
+}
+main {
+  max-width: 70%;
+  padding: 30px;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+p {
+  color: var(--color-primary);
+  text-align: center;
+  font-weight: bold;
+}
+img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#image-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  text-align: center;
+  width: 550px; /* adjust as needed */
+  height: 650px; /* adjust as needed */
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+#explanation,
+#score {
+  padding: 1rem;
+  text-align: center;
+}
+
+#options {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-on-secondary);
+  font-weight: bold;
+  font-size: 25px;
+}
+
+button {
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 0 64px;
+  height: 100px;
+  border: 2px solid var(--color-primary);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: outline 0.2s linear;
+  border-radius: 1rem;
+  font-weight: bold;
+  font-size: 25px;
+  color: var(--color-button-primary-text);
+}
+
+.correct {
+  background-color: var(--color-botton-correct-bg);
+}
+.incorrect {
+  background-color: var(--color-botton-incorrect-bg);
+}
+.hidden {
+  display: none;
+}
+
+/* CSS for tablets */
+@media (max-width: 768px) {
+  /* Adjust styles for tablets here */
+  .correct,
+  .incorrect {
+    font-size: 18px;
+    padding: 0 32px;
+    height: 80px;
+  }
+  /* Adjust image sizes, button sizes, text sizes, etc. as needed */
+}
+
+/* CSS for mobile phones */
+@media (max-width: 480px) {
+  /* Adjust styles for mobile phones here */
+  .correct,
+  .incorrect {
+    font-size: 16px;
+    padding: 0 16px;
+    height: 60px;
+  }
+  /* Adjust image sizes, button sizes, text sizes, etc. as needed */
+}
+
+/* CSS for tablets */
+@media (max-width: 768px) {
+  #image-frame {
+    width: 400px; /* adjust as needed */
+    height: 500px; /* adjust as needed */
+  }
+  /* other styles... */
+}
+
+/* CSS for mobile phones */
+@media (max-width: 480px) {
+  #image-frame {
+    width: 300px; /* adjust as needed */
+    height: 400px; /* adjust as needed */
+  }
+  /* other styles... */
+}
+
+@keyframes bark {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Define the animation for wagging tail */
+@keyframes wag {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Apply the animations to the dog emoji */
+h1 .dog-emoji {
+  font-size: 40px;
+  display: inline-block;
+  animation: bark 0.5s infinite alternate, wag 1s infinite alternate;
+}
