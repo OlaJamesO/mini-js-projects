@@ -362,3 +362,6 @@ try {
   console.error(`Error rendering the quiz:`, error)
   displayErrorMessage('Failed to load quiz data. Please try again later.');
 }
+
+
+// in the future add fun facts about the breed through the dog API
