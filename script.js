@@ -216,11 +216,11 @@ async function fetchMessage(url) {
     const data = await response.json();
     return data.message;
   } catch (error) {
-      console.error(`Error fetching the data:`, error)
-      throw error;
+    console.error(`Error fetching the data:`, error)
+    throw error;
   }
-    
-  
+
+
 }
 
 // Function to add the multiple-choice buttons to the page
@@ -237,6 +237,7 @@ function renderButtons(choicesArray, correctAnswer) {
   }
 
   const options = document.getElementById("options"); // Container for the multiple-choice buttons
+  const explain = document.getElementById("explanation");
 
   // TODO 4
   // For each of the choices in choicesArray,
@@ -278,19 +279,23 @@ function renderButtons(choicesArray, correctAnswer) {
   // Add a div to display the explanation
   const explanationDiv = document.createElement("div");
   explanationDiv.id = "explanation";
-  options.appendChild(explanationDiv);
+  explain.appendChild(explanationDiv);
 
-  // create a text content for explanation div and add it to the page after the correct or worng answer is clicked
+  // text content for explanation div and add it to the page after the correct or worng answer is clicked
   const explanation = document.getElementById("explanation");
   explanation.textContent = "Click on the correct breed to see the explanation";
   explanation.classList.add("hidden");
 
   // Event handler function to show the explanation when the correct or wrong answer is clicked
+  function capitalizeWords(str) {
+    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }
+
   function showExplanation() {
     explanation.classList.remove("hidden");
     //add toUpperCase() to correctAnswer in bold text
-    explanation.textContent = `The correct 🐶 breed is ${correctAnswer.toUpperCase()}!!. `;
-
+    let capitalizedAnswer = capitalizeWords(correctAnswer);
+    explanation.innerHTML = `The 🐶 breed is <strong>${capitalizedAnswer}!!</strong>`
 
   }
 
@@ -326,12 +331,12 @@ async function loadQuizData() {
 
     return [doggoImgUrl, correctBreed, breedChoices];
 
-  } catch ( error) {
+  } catch (error) {
     console.error(`Error loading the quiz data:`, error)
     throw error;
-  
+
   }
- 
+
 }
 
 // TODO 5
@@ -357,7 +362,3 @@ try {
   console.error(`Error rendering the quiz:`, error)
   displayErrorMessage('Failed to load quiz data. Please try again later.');
 }
-
-
-
-

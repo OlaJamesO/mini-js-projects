@@ -3,7 +3,7 @@
   --color-primary: #ff7b54;
   --color-text-on-primary: #ffffff;
   --color-secondary: #ffffff;
-  --color-text-on-secondary: #706e6e;
+  --color-text-on-secondary: #363535;
   --second-color-text-on-secondary: #000000;
   --color-border: #ffffff;
 
@@ -14,7 +14,7 @@
   --color-button-secondary-bg: var(--color-primary);
   --color-button-secondary-text: var(--color-text-on-primary);
   --color-botton-correct-bg: #0c5a0e;
-  --color-botton-incorrect-bg: #ffb6c1;
+  --color-botton-incorrect-bg: #f3bcc4;
 }
 
 /* General styles */
@@ -57,8 +57,8 @@ img {
 
 #image-frame {
   width: 100%;
-  max-width: 550px; /* Adjust max-width as needed */
-  
+  max-width: 650px; /* Adjust max-width as needed */
+
   height: 480px; /* Adjust max-height as needed */
   overflow: hidden;
   border-radius: 1rem;
@@ -74,8 +74,7 @@ img {
   flex-direction: column;
   text-align: center;
   color: var(--color-text-on-secondary);
-  font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
 }
 a {
   color: var(--color-text-on-secondary);
@@ -87,22 +86,19 @@ a:hover {
 }
 
 button {
-  border-radius: 5px;
-  font-size: 20px;
+  font-size: 22px;
   padding: 0 1rem;
-  height: 3rem;
-  border: 2px solid var(--color-primary);
-  box-sizing: border-box;
+  height: 3.5rem;
   cursor: pointer;
   transition: outline 0.2s linear;
-  border-radius: 1rem;
-  font-weight: bold;
+  border-radius: 0.5rem;
   color: var(--color-button-primary-text);
 }
 
 .correct {
   background-color: var(--color-botton-correct-bg);
   color: var(--color-secondary);
+  
 }
 
 .incorrect {
@@ -155,32 +151,32 @@ h1 .dog-emoji {
   main {
     padding: 0.5rem;
   }
-  
+
   #image-frame {
-    max-width: 400px;
-    max-height: 500px;
+    max-width: 450px;
+    max-height: 550px;
   }
-  
-  button.correct,
-  button.incorrect {
+
+  .button {
     font-size: 18px;
     padding: 0 0.5rem;
     height: 2.5rem;
+    width: auto;
   }
+
 }
 
 @media (max-width: 480px) {
   main {
     padding: 0.25rem;
   }
-  
+
   #image-frame {
-    max-width: 300px;
-    max-height: 400px;
+    max-width: 350px;
+    max-height: 450px;
   }
-  
-  button.correct,
-  button.incorrect {
+
+  .button{
     font-size: 16px;
     padding: 0 0.25rem;
     height: 2rem;
