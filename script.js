@@ -208,9 +208,19 @@ function getBreedFromURL(url) {
 // then parse the response as a JSON object,
 // finally return the "message" property of its body
 async function fetchMessage(url) {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data.message;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Failed to fetch the image");
+    }
+    const data = await response.json();
+    return data.message;
+  } catch (error) {
+      console.error(`Error fetching the data:`, error)
+      throw error;
+  }
+    
+  
 }
 
 // Function to add the multiple-choice buttons to the page
@@ -305,25 +315,48 @@ function renderQuiz(imgUrl, correctAnswer, choices) {
 
 // Function to load the data needed to display the quiz
 async function loadQuizData() {
-  document.getElementById("image-frame").textContent =
-    "Fetching doggo...";
+  try {
+    document.getElementById("image-frame").textContent =
+      "Fetching doggo...";
 
-  const doggoImgUrl = await fetchMessage(RANDOM_IMG_ENDPOINT);
-  let correctBreed = getBreedFromURL(doggoImgUrl);
-  correctBreed = correctBreed.charAt(0).toUpperCase() + correctBreed.slice(1); // Capitalize the first letter
-  const breedChoices = getMultipleChoices(3, correctBreed, BREEDS);
+    const doggoImgUrl = await fetchMessage(RANDOM_IMG_ENDPOINT);
+    let correctBreed = getBreedFromURL(doggoImgUrl);
+    correctBreed = correctBreed.charAt(0).toUpperCase() + correctBreed.slice(1); // Capitalize the first letter
+    const breedChoices = getMultipleChoices(3, correctBreed, BREEDS);
 
+    return [doggoImgUrl, correctBreed, breedChoices];
 
-
-  return [doggoImgUrl, correctBreed, breedChoices];
+  } catch ( error) {
+    console.error(`Error loading the quiz data:`, error)
+    throw error;
+  
+  }
+ 
 }
 
 // TODO 5
 // Asynchronously call the loadQuizData() function,
 // Then call renderQuiz() with the returned imageUrl, correctAnswer, and choices
 
-const [imgUrl, correctAnswer, choices] = await loadQuizData();
-renderQuiz(imgUrl, correctAnswer, choices);
+// Catch any errors and display an error message to the user
+// Use the displayErrorMessage() function to show the message
+
+function displayErrorMessage(message) {
+  alert('An error occurred: ${message}');
+  // Add an error message to the page
+  const errorMessage = document.createElement('div');
+  errorMessage.textContent = message;
+  errorMessage.classList.add('error');
+  document.body.prepend(errorMessage);
+}
+
+try {
+  const [imgUrl, correctAnswer, choices] = await loadQuizData();
+  renderQuiz(imgUrl, correctAnswer, choices);
+} catch (error) {
+  console.error(`Error rendering the quiz:`, error)
+  displayErrorMessage('Failed to load quiz data. Please try again later.');
+}
 
 
 
